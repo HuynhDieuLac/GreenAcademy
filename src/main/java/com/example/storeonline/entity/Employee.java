@@ -1,5 +1,6 @@
 package com.example.storeonline.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,6 +25,9 @@ public class Employee {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "date")
+	private Date dateOfBirthday;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn
@@ -67,6 +71,14 @@ public class Employee {
 		this.permissions = permissions;
 	}
 
+	public Date getDateOfBirthday() {
+		return dateOfBirthday;
+	}
+
+	public void setDateOfBirthday(Date dateOfBirthday) {
+		this.dateOfBirthday = dateOfBirthday;
+	}
+	
 	
 	
 	

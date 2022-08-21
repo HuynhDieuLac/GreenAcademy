@@ -1,6 +1,7 @@
 package com.example.storeonline;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,40 +45,42 @@ public class StoreonlineApplication implements CommandLineRunner {
 		 * employeeRepository.save(employee1); Integer saveEmployeeId =
 		 * saveEmployee.getId();
 		 */	
-//		List<Employee> employeeList = employeeRepository.findAll();
-//		for(Employee employee : employeeList)
-//		{
-//			System.out.println("Employee Name: " + employee.getName());
-//		}
+		List<Employee> employeeList = employeeRepository.findAll();
+		for(Employee employee : employeeList)
+		{
+			System.out.println("Employee Name: " + employee.getName());
+		}
 		
-//		System.out.println("----------Continue------------");
-//		Employee employee1 = new Employee();
-//		
-//		Permission perm = new Permission();
-//		perm.setName("Admin");
-//		
-//		Permission perm1 = new Permission();
-//		perm.setName("Manager");
-//		
-//		List<Permission> permissionList = new ArrayList<Permission>();
-//		permissionList.add(perm);
-//		permissionList.add(perm1);
-//		
-//		Department dept = new Department();
-//		dept.setName("IT");
-//		
-//		employee1.setName("Hung");
-//		employee1.setDepartment(dept);
-//		employee1.setPermissions(permissionList);
-//		
-//		
-//		employeeRepository.save(employee1);
+		System.out.println("----------Continue------------");
+		Employee employee1 = new Employee();
 		
-//		Optional<Employee> employee48Optional = employeeRepository.findById(48);
-//		Employee employee48 = employee48Optional.get();
-//		System.out.println("Employee " + employee48.getName());
-//		employee48.setName("An");
-//		employeeRepository.save(employee48);
+		Permission perm = new Permission();
+		perm.setName("Admin");
+		
+		Permission perm1 = new Permission();
+		perm.setName("Manager");
+//		
+		List<Permission> permissionList = new ArrayList<Permission>();
+		permissionList.add(perm);
+		permissionList.add(perm1);
+//		
+		Department dept = new Department();
+		dept.setName("IT");
+//		
+		employee1.setName("Hung");
+		employee1.setDepartment(dept);
+		employee1.setPermissions(permissionList);
+//		
+//		
+		employeeRepository.save(employee1);
+		
+		Optional<Employee> employee48Optional = employeeRepository.findById(12);
+		Employee employee48 = employee48Optional.get();
+		
+		employee48.setName("An");
+		employee48.setDateOfBirthday(new Date());
+		
+		employeeRepository.save(employee48);
 //		
 //		employeeRepository.deleteById(48);
 	}

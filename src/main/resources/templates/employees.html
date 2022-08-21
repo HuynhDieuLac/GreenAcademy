@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Employee</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table>
+	<tr>
+		<th>Idex</th>
+		<th>EMP_ID</th>
+		<th>Odd/Even</th>
+		<th>Name</th>
+		<th>EDIT</th>
+		<th>ROLE</th>
+		<th>DayOfBirthday</th>
+	</tr>
+	<tr th:each = "employee,iterState : ${employeeList}" > 
+		<td th:utext = "${iterState.index}"></td>
+		<td th:utext = "${employee.id}"></td>
+		<td > <span th:utext = "${iterState.odd}? 'Odd' : 'Even' " ></span> </td>
+		<td th:utext = "${employee.name}"></td>
+		<td> <a th:href = "@{http://localhost:8080/employees?action=EDIT&(empId=${employee.id})}">EDIT</a> </td>
+		
+		<td>
+		<div th:each ="permission: ${employee.permissions}">
+			<div th:switch = "${permission.name}" >
+				<p th:case = "'Admin'">Permission is an Admin</p>
+				<p th:case = "'Manager'">Permission is a Manager</p>
+			</div>
+		</div>
+		</td>
+		
+		<td th:utext = "${#dates.format(employee.dateOfBirthday,'dd/MM/yyyy')}"></td>
+	</tr>
+</table>
+</body>
+</html>
