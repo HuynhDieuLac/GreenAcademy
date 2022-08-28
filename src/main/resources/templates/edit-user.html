@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Add User</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="my-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+					<h2 class="text-center mb-3">Edit User</h2>
+						<form th:action="@{/updateuser?(userId=${user.id})}" th:object="${user}" method="post">
+							
+							<div class="mb-3">
+							<label for="firstName" class="col-form-label">First Name</label>
+							<input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First Name"> 
+							<span th:errors="*{firstName}" class="text-danger"></span>
+							</div>
+							
+							<div class="mb-3">
+							<label for="lastName" class="col-form-label">Last Name</label>
+							<input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name">
+							<span th:errors="*{lastName}" class="text-danger"></span>
+							</div>
+							
+							<div class="mb-3">
+							<label for="email" class="col-form-label">Email</label>		
+							<input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">	
+							<span th:errors="*{email}" class="text-danger"></span>
+							</div>	
+								
+								<input
+								type="submit" class="btn btn-primary" value="Save">
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
