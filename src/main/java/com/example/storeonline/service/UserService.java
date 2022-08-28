@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.aspectj.apache.bcel.classfile.Module.Uses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.storeonline.entity.*;
@@ -45,5 +48,12 @@ public class UserService {
 	{
 		User currenUser1 = findUserById(id);
 		userRepository.delete(currenUser1);
+	}
+	
+	public Page<User> findAll(int pageNumber, int pageSize)
+	{
+		Pageable pageAble = PageRequest.of(pageNumber - 1, pageSize);
+		Page<User> pageUser = userRepository.findAll(pageAble);
+		return pageUser;
 	}
 }

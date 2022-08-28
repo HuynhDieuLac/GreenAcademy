@@ -1,10 +1,13 @@
 package com.example.storeonline.controller;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,8 +25,15 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping("/user")
-	public String showUserList(Model model) {
-		model.addAttribute("users", userService.getUsers());
+	public String showUserList(@RequestParam(name= "page", required = false, defaultValue = "1")  int pageNumber, Model model) {
+		int pageSize = 5; // số lượng User cho 1 trang
+		Page<User> pageUser = userService.findAll(pageNumber, pageSize);
+		
+		List<User> users = pageUser.getContent();
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", pageUser.getTotalPages());
+		model.addAttribute("totalItems", pageUser.getTotalElements());
+		model.addAttribute("users", users);
 		return "user";
 	}
 
